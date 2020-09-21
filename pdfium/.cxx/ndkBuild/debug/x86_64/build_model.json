@@ -25,7 +25,7 @@
       "cxxFolder": "/Users/ppamorim/Repository/AndroidPdfViewer/pdfium/.cxx",
       "gradleModulePathName": ":pdfium",
       "intermediatesFolder": "/Users/ppamorim/Repository/AndroidPdfViewer/pdfium/build/intermediates",
-      "makeFile": "/Users/ppamorim/Repository/PdfiumAndroid/src/main/jni/Android.mk",
+      "makeFile": "/Users/ppamorim/Repository/AndroidPdfViewer/pdfium/src/main/jni/Android.mk",
       "moduleBuildFile": "/Users/ppamorim/Repository/AndroidPdfViewer/pdfium/build.gradle",
       "moduleRootFolder": "/Users/ppamorim/Repository/AndroidPdfViewer/pdfium",
       "ndkDefaultAbiList": [
