@@ -1,0 +1,34 @@
+{
+  "buildFiles": [
+    "/Users/ppamorim/Repository/PdfiumAndroid/src/main/jni/Android.mk",
+    "/Users/ppamorim/Repository/PdfiumAndroid/src/main/jni/Application.mk"
+  ],
+  "cleanCommands": [
+    "/Users/ppamorim/Library/Android/sdk/ndk/21.0.6113669/ndk-build NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003d/Users/ppamorim/Repository/PdfiumAndroid/src/main/jni/Android.mk NDK_APPLICATION_MK\u003d/Users/ppamorim/Repository/PdfiumAndroid/src/main/jni/Application.mk APP_ABI\u003darmeabi-v7a NDK_ALL_ABIS\u003darmeabi-v7a NDK_DEBUG\u003d0 APP_PLATFORM\u003dandroid-16 NDK_OUT\u003d/Users/ppamorim/Repository/AndroidPdfViewer/pdfium/build/intermediates/ndkBuild/release/obj NDK_LIBS_OUT\u003d/Users/ppamorim/Repository/AndroidPdfViewer/pdfium/build/intermediates/ndkBuild/release/lib clean"
+  ],
+  "buildTargetsCommand": "/Users/ppamorim/Library/Android/sdk/ndk/21.0.6113669/ndk-build NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003d/Users/ppamorim/Repository/PdfiumAndroid/src/main/jni/Android.mk NDK_APPLICATION_MK\u003d/Users/ppamorim/Repository/PdfiumAndroid/src/main/jni/Application.mk APP_ABI\u003darmeabi-v7a NDK_ALL_ABIS\u003darmeabi-v7a NDK_DEBUG\u003d0 APP_PLATFORM\u003dandroid-16 NDK_OUT\u003d/Users/ppamorim/Repository/AndroidPdfViewer/pdfium/build/intermediates/ndkBuild/release/obj NDK_LIBS_OUT\u003d/Users/ppamorim/Repository/AndroidPdfViewer/pdfium/build/intermediates/ndkBuild/release/lib {LIST_OF_TARGETS_TO_BUILD}",
+  "libraries": {
+    "jniPdfium-release-armeabi-v7a": {
+      "buildCommand": "/Users/ppamorim/Library/Android/sdk/ndk/21.0.6113669/ndk-build NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003d/Users/ppamorim/Repository/PdfiumAndroid/src/main/jni/Android.mk NDK_APPLICATION_MK\u003d/Users/ppamorim/Repository/PdfiumAndroid/src/main/jni/Application.mk APP_ABI\u003darmeabi-v7a NDK_ALL_ABIS\u003darmeabi-v7a NDK_DEBUG\u003d0 APP_PLATFORM\u003dandroid-16 NDK_OUT\u003d/Users/ppamorim/Repository/AndroidPdfViewer/pdfium/build/intermediates/ndkBuild/release/obj NDK_LIBS_OUT\u003d/Users/ppamorim/Repository/AndroidPdfViewer/pdfium/build/intermediates/ndkBuild/release/lib /Users/ppamorim/Repository/AndroidPdfViewer/pdfium/build/intermediates/ndkBuild/release/obj/local/armeabi-v7a/libjniPdfium.so",
+      "toolchain": "toolchain-armeabi-v7a",
+      "abi": "armeabi-v7a",
+      "artifactName": "jniPdfium",
+      "files": [
+        {
+          "src": "/Users/ppamorim/Repository/PdfiumAndroid/src/main/jni/src/mainJNILib.cpp",
+          "flags": "-target armv7-none-linux-androideabi16 -fdata-sections -ffunction-sections -fstack-protector-strong -funwind-tables -no-canonical-prefixes --sysroot /Users/ppamorim/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -g -Wno-invalid-command-line-argument -Wno-unused-command-line-argument -D_FORTIFY_SOURCE\u003d2 -fno-exceptions -fno-rtti -fpic -march\u003darmv7-a -mthumb -Oz -DNDEBUG -I/Users/ppamorim/Repository/PdfiumAndroid/src/main/jni/include -I/Users/ppamorim/Library/Android/sdk/ndk/21.0.6113669/sources/cxx-stl/llvm-libc++/include -I/Users/ppamorim/Library/Android/sdk/ndk/21.0.6113669/sources/cxx-stl/llvm-libc++/../llvm-libc++abi/include -I/Users/ppamorim/Repository/PdfiumAndroid/src/main/jni -fexceptions -DANDROID -DHAVE_PTHREADS -nostdinc++ -Wformat -Werror\u003dformat-security -fno-strict-aliasing"
+        }
+      ],
+      "output": "/Users/ppamorim/Repository/AndroidPdfViewer/pdfium/build/intermediates/ndkBuild/release/obj/local/armeabi-v7a/libjniPdfium.so"
+    }
+  },
+  "toolchains": {
+    "toolchain-armeabi-v7a": {
+      "cppCompilerExecutable": "/Users/ppamorim/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++"
+    }
+  },
+  "cFileExtensions": [],
+  "cppFileExtensions": [
+    "cpp"
+  ]
+}

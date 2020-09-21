@@ -42,6 +42,7 @@ import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle;
 import com.github.barteksc.pdfviewer.util.FitPolicy;
 import com.shockwave.pdfium.PdfDocument;
 
+
 import java.util.List;
 
 import butterknife.BindView;
