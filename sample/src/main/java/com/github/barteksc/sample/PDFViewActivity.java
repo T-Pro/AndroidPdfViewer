@@ -41,12 +41,12 @@ import com.github.barteksc.pdfviewer.listener.OnPageErrorListener;
 import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle;
 import com.github.barteksc.pdfviewer.util.FitPolicy;
 import com.shockwave.pdfium.PdfDocument;
+import com.github.barteksc.sample.databinding.ActivityMainBinding;
+
 
 
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class PDFViewActivity extends AppCompatActivity implements
         OnPageChangeListener,
@@ -61,8 +61,8 @@ public class PDFViewActivity extends AppCompatActivity implements
     public static final String SAMPLE_FILE = "sample.pdf";
     public static final String READ_EXTERNAL_STORAGE = "android.permission.READ_EXTERNAL_STORAGE";
 
-    @BindView(R.id.pdfView)
-    PDFView pdfView;
+    private ActivityMainBinding binding;
+
 
     Uri uri;
 
@@ -73,8 +73,9 @@ public class PDFViewActivity extends AppCompatActivity implements
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
     }
 
     @Override
@@ -86,24 +87,24 @@ public class PDFViewActivity extends AppCompatActivity implements
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.pickFile:
-                int permissionCheck = ContextCompat.checkSelfPermission(this,
-                        READ_EXTERNAL_STORAGE);
-                if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(
-                            this,
-                            new String[]{READ_EXTERNAL_STORAGE},
-                            PERMISSION_CODE
-                    );
-
-                    return true;
-                }
-                launchPicker();
+        if (item.getItemId() == R.id.pickFile) {
+            int permissionCheck = ContextCompat.checkSelfPermission(this,
+                    READ_EXTERNAL_STORAGE);
+            if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(
+                        this,
+                        new String[]{READ_EXTERNAL_STORAGE},
+                        PERMISSION_CODE
+                );
                 return true;
-            default:
-                return super.onOptionsItemSelected(item);
+            }
+            launchPicker();
+            return true;
+
+        }  else {
+            return super.onOptionsItemSelected(item);
         }
+
     }
 
     @Override
@@ -118,7 +119,7 @@ public class PDFViewActivity extends AppCompatActivity implements
     @Override
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        pdfView.setBackgroundColor(Color.LTGRAY);
+        binding.pdfView.setBackgroundColor(Color.LTGRAY);
         if (uri != null) {
             displayFromUri(uri);
         } else {
@@ -141,7 +142,7 @@ public class PDFViewActivity extends AppCompatActivity implements
     private void displayFromAsset(String assetFileName) {
         pdfFileName = assetFileName;
 
-        pdfView.fromAsset(SAMPLE_FILE)
+        binding.pdfView.fromAsset(SAMPLE_FILE)
                 .defaultPage(pageNumber)
                 .onPageChange(this)
                 .enableAnnotationRendering(true)
@@ -156,7 +157,7 @@ public class PDFViewActivity extends AppCompatActivity implements
     private void displayFromUri(Uri uri) {
         pdfFileName = getFileName(uri);
 
-        pdfView.fromUri(uri)
+        binding.pdfView.fromUri(uri)
                 .defaultPage(pageNumber)
                 .onPageChange(this)
                 .enableAnnotationRendering(true)
@@ -195,7 +196,7 @@ public class PDFViewActivity extends AppCompatActivity implements
 
     @Override
     public void loadComplete(int nbPages) {
-        PdfDocument.Meta meta = pdfView.getDocumentMeta();
+        PdfDocument.Meta meta = binding.pdfView.getDocumentMeta();
         Log.e(TAG, "title = " + meta.getTitle());
         Log.e(TAG, "author = " + meta.getAuthor());
         Log.e(TAG, "subject = " + meta.getSubject());
@@ -205,7 +206,7 @@ public class PDFViewActivity extends AppCompatActivity implements
         Log.e(TAG, "creationDate = " + meta.getCreationDate());
         Log.e(TAG, "modDate = " + meta.getModDate());
 
-        printBookmarksTree(pdfView.getTableOfContents(), "-");
+        printBookmarksTree(binding.pdfView.getTableOfContents(), "-");
 
     }
 

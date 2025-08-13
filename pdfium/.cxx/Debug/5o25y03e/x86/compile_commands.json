@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/Users/renjumenon/Downloads/PdfiumAndroid-1.9.6/.cxx/Debug/5o25y03e/x86",
+  "command": "/Users/renjumenon/Library/Android/sdk/ndk/28.1.13356709/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=i686-none-linux-android21 --sysroot=/Users/renjumenon/Library/Android/sdk/ndk/28.1.13356709/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -Dpdfiumandroid_EXPORTS -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -fno-limit-debug-info  -fPIC -o CMakeFiles/pdfiumandroid.dir/mainJNILib.cpp.o -c /Users/renjumenon/Downloads/PdfiumAndroid-1.9.6/src/main/cpp/mainJNILib.cpp",
+  "file": "/Users/renjumenon/Downloads/PdfiumAndroid-1.9.6/src/main/cpp/mainJNILib.cpp"
+}
+]

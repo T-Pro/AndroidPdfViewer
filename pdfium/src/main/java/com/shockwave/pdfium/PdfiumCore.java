@@ -23,11 +23,7 @@ public class PdfiumCore {
 
     static {
         try {
-            System.loadLibrary("c++_shared");
-            System.loadLibrary("modpng");
-            System.loadLibrary("modft2");
-            System.loadLibrary("modpdfium");
-            System.loadLibrary("jniPdfium");
+            System.loadLibrary("pdfiumandroid");
         } catch (UnsatisfiedLinkError e) {
             Log.e(TAG, "Native libraries failed to load - " + e);
         }
@@ -67,7 +63,7 @@ public class PdfiumCore {
     private native void nativeRenderPageBitmap(long pagePtr, Bitmap bitmap, int dpi,
                                                int startX, int startY,
                                                int drawSizeHor, int drawSizeVer,
-                                               boolean renderAnnot);
+                                               boolean renderAnnot, long docPtr);
 
     private native String nativeGetDocumentMetaText(long docPtr, String tag);
 
@@ -119,7 +115,7 @@ public class PdfiumCore {
     /** Context needed to get screen density */
     public PdfiumCore(Context ctx) {
         mCurrentDpi = ctx.getResources().getDisplayMetrics().densityDpi;
-        Log.d(TAG, "Starting PdfiumAndroid " + BuildConfig.VERSION_NAME);
+       // Log.d(TAG, "Starting PdfiumAndroid " + BuildConfig.VERSION_NAME);
     }
 
     /** Create new document from file */
@@ -310,7 +306,7 @@ public class PdfiumCore {
         synchronized (lock) {
             try {
                 nativeRenderPageBitmap(doc.mNativePagesPtr.get(pageIndex), bitmap, mCurrentDpi,
-                        startX, startY, drawSizeX, drawSizeY, renderAnnot);
+                        startX, startY, drawSizeX, drawSizeY, renderAnnot, doc.mNativeDocPtr);
             } catch (NullPointerException e) {
                 Log.e(TAG, "mContext may be null");
                 e.printStackTrace();
@@ -335,7 +331,7 @@ public class PdfiumCore {
                 try {
                     doc.parcelFileDescriptor.close();
                 } catch (IOException e) {
-                /* ignore */
+                    /* ignore */
                 }
                 doc.parcelFileDescriptor = null;
             }
