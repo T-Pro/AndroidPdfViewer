@@ -1,3 +1,0 @@
-/Users/renjumenon/Downloads/PdfiumAndroid-1.9.6/.cxx/Debug/5o25y03e/x86/CMakeFiles/pdfiumandroid.dir
-/Users/renjumenon/Downloads/PdfiumAndroid-1.9.6/.cxx/Debug/5o25y03e/x86/CMakeFiles/edit_cache.dir
-/Users/renjumenon/Downloads/PdfiumAndroid-1.9.6/.cxx/Debug/5o25y03e/x86/CMakeFiles/rebuild_cache.dir
