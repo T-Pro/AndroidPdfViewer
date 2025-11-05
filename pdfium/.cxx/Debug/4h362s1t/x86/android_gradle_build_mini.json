@@ -1,0 +1,29 @@
+{
+  "buildFiles": [
+    "/Users/renjumenon/Documents/android/AndroidPdfViewer/pdfium/src/main/cpp/CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "/Users/renjumenon/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+      "-C",
+      "/Users/renjumenon/Documents/android/AndroidPdfViewer/pdfium/.cxx/Debug/4h362s1t/x86",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "/Users/renjumenon/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+    "-C",
+    "/Users/renjumenon/Documents/android/AndroidPdfViewer/pdfium/.cxx/Debug/4h362s1t/x86",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {
+    "pdfiumandroid::@6890427a1f51a3e7e1df": {
+      "artifactName": "pdfiumandroid",
+      "abi": "x86",
+      "output": "/Users/renjumenon/Documents/android/AndroidPdfViewer/pdfium/build/intermediates/cxx/Debug/4h362s1t/obj/x86/libpdfiumandroid.so",
+      "runtimeFiles": [
+        "/Users/renjumenon/Documents/android/AndroidPdfViewer/pdfium/src/main/jniLibs/x86/libpdfium.cr.so"
+      ]
+    }
+  }
+}

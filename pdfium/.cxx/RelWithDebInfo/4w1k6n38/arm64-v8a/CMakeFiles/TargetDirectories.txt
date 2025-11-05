@@ -1,0 +1,3 @@
+/Users/renjumenon/Documents/android/AndroidPdfViewer/pdfium/.cxx/RelWithDebInfo/4w1k6n38/arm64-v8a/CMakeFiles/pdfiumandroid.dir
+/Users/renjumenon/Documents/android/AndroidPdfViewer/pdfium/.cxx/RelWithDebInfo/4w1k6n38/arm64-v8a/CMakeFiles/edit_cache.dir
+/Users/renjumenon/Documents/android/AndroidPdfViewer/pdfium/.cxx/RelWithDebInfo/4w1k6n38/arm64-v8a/CMakeFiles/rebuild_cache.dir
