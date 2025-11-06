@@ -1,5 +1,0 @@
-fcntl(): Bad file descriptor
-/Users/ppamorim/Library/Android/sdk/ndk/21.0.6113669/build/core/build-binary.mk:748: warning: overriding recipe for target '/Users/ppamorim/Repository/AndroidPdfViewer/pdfium/build/intermediates/ndkBuild/debug/obj/local/arm64-v8a/libc++_shared.so'
-/Users/ppamorim/Library/Android/sdk/ndk/21.0.6113669/build/core/build-binary.mk:748: warning: ignoring old recipe for target '/Users/ppamorim/Repository/AndroidPdfViewer/pdfium/build/intermediates/ndkBuild/debug/obj/local/arm64-v8a/libc++_shared.so'
-/Users/ppamorim/Library/Android/sdk/ndk/21.0.6113669/build/core/build-binary.mk:772: warning: overriding recipe for target '/Users/ppamorim/Repository/AndroidPdfViewer/pdfium/build/intermediates/ndkBuild/debug/lib/arm64-v8a/libc++_shared.so'
-/Users/ppamorim/Library/Android/sdk/ndk/21.0.6113669/build/core/build-binary.mk:772: warning: ignoring old recipe for target '/Users/ppamorim/Repository/AndroidPdfViewer/pdfium/build/intermediates/ndkBuild/debug/lib/arm64-v8a/libc++_shared.so'

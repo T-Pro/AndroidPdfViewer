@@ -1,20 +1,21 @@
-
 buildscript {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
+        maven { url "https://jitpack.io" }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.0.1'
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.5'
+        classpath 'com.android.tools.build:gradle:8.7.3'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
+        classpath 'com.github.aasitnikov:fat-aar-android:1.4.2'
+
     }
 }
 
 allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
         maven { url 'https://jitpack.io' }
     }
 }

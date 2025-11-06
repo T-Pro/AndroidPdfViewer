@@ -1,4 +1,0 @@
-[arm64-v8a] Compile++      : jniPdfium <= mainJNILib.cpp
-[arm64-v8a] Prebuilt       : libmodpdfium.so <= /Users/ppamorim/Repository/AndroidPdfViewer/pdfium/src/main/jni/lib/arm64-v8a/
-[arm64-v8a] Prebuilt       : libc++_shared.so <= <NDK>/sources/cxx-stl/llvm-libc++/libs/arm64-v8a/
-[arm64-v8a] SharedLibrary  : libjniPdfium.so
