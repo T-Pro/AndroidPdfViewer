@@ -11,7 +11,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 35
         versionCode 1
-        versionName "4.0.3"
+        versionName "4.0.4"
     }
 
     compileOptions {
@@ -42,16 +42,16 @@ afterEvaluate {
     publishing {
         publications {
             release(MavenPublication) {
-                groupId = 'com.github.barteksc'
-                artifactId = 'android-pdf-viewer'
-                version = '4.0.3'
+                groupId = 'com.github.T-Pro'
+                artifactId = 'AndroidPdfViewer'
+                version = '4.0.4'
 
                 from components.release
 
                 pom {
                     name = 'AndroidPdfViewer'
                     description = 'Android view for displaying PDFs rendered with PdfiumAndroid'
-                    url = 'https://github.com/barteksc/AndroidPdfViewer'
+                    url = 'https://github.com/T-Pro/AndroidPdfViewer'
 
                     licenses {
                         license {
@@ -62,16 +62,16 @@ afterEvaluate {
 
                     developers {
                         developer {
-                            id = 'barteksc'
-                            name = 'Bartosz Schiller'
-                            email = 'barteksch@boo.pl'
+                            id = 'T-Pro'
+                            name = 'T-Pro'
+                            email = 'pedro.amorim@tpro.io'
                         }
                     }
 
                     scm {
-                        connection = 'https://github.com/barteksc/AndroidPdfViewer.git'
-                        developerConnection = 'https://github.com/barteksc/AndroidPdfViewer.git'
-                        url = 'https://github.com/barteksc/AndroidPdfViewer'
+                        connection = 'https://github.com/T-Pro/AndroidPdfViewer.git'
+                        developerConnection = 'https://github.com/T-Pro/AndroidPdfViewer.git'
+                        url = 'https://github.com/T-Pro/AndroidPdfViewer'
                     }
                 }
             }
