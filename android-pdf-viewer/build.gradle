@@ -1,15 +1,17 @@
-apply plugin: 'com.android.library'
+plugins {
+    id 'com.android.library'
+    id 'maven-publish'
+}
 
 android {
     compileSdkVersion 35
     namespace 'com.github.barteksc.pdfviewer'
 
-
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 35
         versionCode 1
-        versionName "4.0.0"
+        versionName "4.0.3"
     }
 
     compileOptions {
@@ -17,6 +19,18 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+
+    publishing {
+        singleVariant('release') {
+            withSourcesJar()
+            withJavadocJar()
+        }
+    }
 }
 
 dependencies {
@@ -24,3 +38,43 @@ dependencies {
     api project(':pdfium')
 }
 
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                groupId = 'com.github.barteksc'
+                artifactId = 'android-pdf-viewer'
+                version = '4.0.3'
+
+                from components.release
+
+                pom {
+                    name = 'AndroidPdfViewer'
+                    description = 'Android view for displaying PDFs rendered with PdfiumAndroid'
+                    url = 'https://github.com/barteksc/AndroidPdfViewer'
+
+                    licenses {
+                        license {
+                            name = 'The Apache Software License, Version 2.0'
+                            url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        }
+                    }
+
+                    developers {
+                        developer {
+                            id = 'barteksc'
+                            name = 'Bartosz Schiller'
+                            email = 'barteksch@boo.pl'
+                        }
+                    }
+
+                    scm {
+                        connection = 'https://github.com/barteksc/AndroidPdfViewer.git'
+                        developerConnection = 'https://github.com/barteksc/AndroidPdfViewer.git'
+                        url = 'https://github.com/barteksc/AndroidPdfViewer'
+                    }
+                }
+            }
+        }
+    }
+}
