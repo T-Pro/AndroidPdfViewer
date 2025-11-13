@@ -79,3 +79,13 @@ afterEvaluate {
         }
     }
 }
+
+afterEvaluate {
+    def explodeTasks = tasks.matching { it.name.toLowerCase().startsWith("explode") }
+
+    tasks.matching { it.name.startsWith("extractDeepLinks") }.configureEach { extractTask ->
+        explodeTasks.configureEach { explodeTask ->
+            extractTask.dependsOn(explodeTask)
+        }
+    }
+}
