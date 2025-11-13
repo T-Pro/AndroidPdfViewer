@@ -5,7 +5,6 @@ android {
     compileSdkVersion 35
     namespace 'com.github.barteksc.pdfviewer'
 
-
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 35
@@ -17,7 +16,6 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
 }
 
 dependencies {
@@ -26,3 +24,20 @@ dependencies {
     embed project(path: ':pdfium', configuration: 'default')
 }
 
+afterEvaluate {
+    // Safely configure task dependencies only if tasks exist
+    def debugEmbedTask = tasks.findByName('explodeCom.github.marain87Pdfium-debug.aarDebug')
+    def releaseEmbedTask = tasks.findByName('explodeCom.github.marain87Pdfium-release.aarRelease')
+
+    if (debugEmbedTask) {
+        tasks.named('extractDeepLinksDebug').configure {
+            dependsOn(debugEmbedTask)
+        }
+    }
+
+    if (releaseEmbedTask) {
+        tasks.named('extractDeepLinksRelease').configure {
+            dependsOn(releaseEmbedTask)
+        }
+    }
+}
