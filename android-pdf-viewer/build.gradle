@@ -10,7 +10,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 35
         versionCode 1
-        versionName "4.0.7"
+        versionName "4.0.11"
     }
 
     compileOptions {
@@ -26,26 +26,12 @@ android {
 
 dependencies {
     implementation 'androidx.core:core:1.3.1'
-    //api project(':pdfium') use this to run the sample module
+    // we embed pdfium (fat-aar) — on JitPack we publish pdfium first to mavenLocal
     embed project(path: ':pdfium', configuration: 'default')
 }
 
 afterEvaluate {
-    def bundleReleaseLintTask = tasks.findByName('bundleReleaseLocalLintAar')
-    def mergeJarsReleaseTask = tasks.findByName('mergeJarsRelease')
-    def bundleDebugLintTask = tasks.findByName('bundleDebugLocalLintAar')
-    def mergeJarsDebugTask = tasks.findByName('mergeJarsDebug')
-
-    if (bundleReleaseLintTask && mergeJarsReleaseTask) {
-        bundleReleaseLintTask.dependsOn(mergeJarsReleaseTask)
-        bundleReleaseLintTask.mustRunAfter(mergeJarsReleaseTask)
-    }
-
-    if (bundleDebugLintTask && mergeJarsDebugTask) {
-        bundleDebugLintTask.dependsOn(mergeJarsDebugTask)
-        bundleDebugLintTask.mustRunAfter(mergeJarsDebugTask)
-    }
-
+    // keep task wiring for fat-aar if needed
     def debugEmbedTask = tasks.findByName('explodeCom.github.marain87Pdfium-debug.aarDebug')
     def releaseEmbedTask = tasks.findByName('explodeCom.github.marain87Pdfium-release.aarRelease')
 
@@ -54,32 +40,33 @@ afterEvaluate {
             dependsOn(debugEmbedTask)
         }
     }
-
     if (releaseEmbedTask) {
         tasks.named('extractDeepLinksRelease').configure {
             dependsOn(releaseEmbedTask)
         }
     }
-}
 
-afterEvaluate {
+    // Robust publishing: pick the assembled *.aar from build/outputs/aar and publish that file
     publishing {
         publications {
             aar(MavenPublication) {
                 groupId = 'com.github.T-Pro'
                 artifactId = 'AndroidPdfViewer'
-                version = '4.10.0'
+                version = '4.0.11'
 
-                // path to the assembled AAR produced by assembleRelease
-                def aarFile = file("$buildDir/outputs/aar/${project.getName()}-release.aar")
-                if (!aarFile.exists()) {
-                    throw new GradleException("AAR not found: ${aarFile}. Run :${project.path}:assembleRelease first.")
+                def aarDir = file("$buildDir/outputs/aar")
+                def aarFiles = fileTree(dir: aarDir).matching { include('*.aar') }.files
+                if (aarFiles.isEmpty()) {
+                    throw new GradleException("No AAR found in ${aarDir}. Run :${project.path}:assembleRelease first.")
                 }
+                def aarFile = aarFiles.iterator().next()
+                println "Publishing AAR file: ${aarFile}"
                 artifact(aarFile)
             }
         }
 
         repositories {
+            // publish to the JitPack container's local maven repo during CI build
             mavenLocal()
         }
     }

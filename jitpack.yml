@@ -2,5 +2,8 @@ install:
   - ./gradlew --no-daemon -v
 
 script:
-  - ./gradlew :pdfium:assembleRelease :android-pdf-viewer:assembleRelease -x lint -x test
-  - ./gradlew :android-pdf-viewer:publishAarPublicationToMavenLocal -x lint -x test
+  # 1) assemble the modules (creates the AAR files)
+  - ./gradlew :pdfium:assembleRelease :android-pdf-viewer:assembleRelease -x lint -x test --no-daemon --stacktrace
+
+  # 2) publish assembled artifacts to the container's mavenLocal
+  - ./gradlew :pdfium:publishReleasePublicationToMavenLocal :android-pdf-viewer:publishAarPublicationToMavenLocal --no-daemon --stacktrace
