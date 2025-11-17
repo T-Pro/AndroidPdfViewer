@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.kezong.fat-aar'
+apply plugin: 'maven-publish'
 
 android {
     compileSdkVersion 35
@@ -57,6 +58,29 @@ afterEvaluate {
     if (releaseEmbedTask) {
         tasks.named('extractDeepLinksRelease').configure {
             dependsOn(releaseEmbedTask)
+        }
+    }
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            aar(MavenPublication) {
+                groupId = 'com.github.T-Pro'
+                artifactId = 'AndroidPdfViewer'
+                version = '4.10.0'
+
+                // path to the assembled AAR produced by assembleRelease
+                def aarFile = file("$buildDir/outputs/aar/${project.getName()}-release.aar")
+                if (!aarFile.exists()) {
+                    throw new GradleException("AAR not found: ${aarFile}. Run :${project.path}:assembleRelease first.")
+                }
+                artifact(aarFile)
+            }
+        }
+
+        repositories {
+            mavenLocal()
         }
     }
 }

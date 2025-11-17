@@ -1,0 +1,6 @@
+install:
+  - ./gradlew --no-daemon -v
+
+script:
+  - ./gradlew :pdfium:assembleRelease :android-pdf-viewer:assembleRelease -x lint -x test
+  - ./gradlew :android-pdf-viewer:publishAarPublicationToMavenLocal -x lint -x test
