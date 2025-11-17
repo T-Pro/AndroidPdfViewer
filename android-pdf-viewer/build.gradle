@@ -10,7 +10,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 35
         versionCode 1
-        versionName "4.0.11"
+        versionName "4.0.12"
     }
 
     compileOptions {
@@ -26,47 +26,36 @@ android {
 
 dependencies {
     implementation 'androidx.core:core:1.3.1'
-    // we embed pdfium (fat-aar) — on JitPack we publish pdfium first to mavenLocal
-    embed project(path: ':pdfium', configuration: 'default')
+    embed project(':pdfium')
 }
 
 afterEvaluate {
-    // keep task wiring for fat-aar if needed
-    def debugEmbedTask = tasks.findByName('explodeCom.github.marain87Pdfium-debug.aarDebug')
-    def releaseEmbedTask = tasks.findByName('explodeCom.github.marain87Pdfium-release.aarRelease')
+    // Task dependencies for fat-aar
+    tasks.findByName('extractDeepLinksDebug')?.dependsOn(tasks.findByName('explodeCom.github.marain87Pdfium-debug.aarDebug'))
+    tasks.findByName('extractDeepLinksRelease')?.dependsOn(tasks.findByName('explodeCom.github.marain87Pdfium-release.aarRelease'))
 
-    if (debugEmbedTask) {
-        tasks.named('extractDeepLinksDebug').configure {
-            dependsOn(debugEmbedTask)
-        }
-    }
-    if (releaseEmbedTask) {
-        tasks.named('extractDeepLinksRelease').configure {
-            dependsOn(releaseEmbedTask)
-        }
+    // Create AAR artifact lazily
+    def aarFile = file("$buildDir/outputs/aar/${project.name}-release.aar")
+
+    // Register the artifact without checking existence during configuration
+    def aarArtifact = artifacts.add('archives', aarFile) {
+        type 'aar'
+        builtBy 'assembleRelease'
     }
 
-    // Robust publishing: pick the assembled *.aar from build/outputs/aar and publish that file
+    // Publishing configuration
     publishing {
         publications {
             aar(MavenPublication) {
                 groupId = 'com.github.T-Pro'
                 artifactId = 'AndroidPdfViewer'
-                version = '4.0.11'
+                version = '4.0.12'
 
-                def aarDir = file("$buildDir/outputs/aar")
-                def aarFiles = fileTree(dir: aarDir).matching { include('*.aar') }.files
-                if (aarFiles.isEmpty()) {
-                    throw new GradleException("No AAR found in ${aarDir}. Run :${project.path}:assembleRelease first.")
-                }
-                def aarFile = aarFiles.iterator().next()
-                println "Publishing AAR file: ${aarFile}"
-                artifact(aarFile)
+                // Use the lazy artifact
+                artifact aarArtifact
             }
         }
-
         repositories {
-            // publish to the JitPack container's local maven repo during CI build
             mavenLocal()
         }
     }

@@ -1,9 +1,22 @@
+# jitpack.yml (place at repo root)
+jdk:
+  - openjdk17
+
 install:
+  - chmod +x ./gradlew
   - ./gradlew --no-daemon -v
 
 script:
-  # 1) assemble the modules (creates the AAR files)
+  # 1) assemble release artifacts (creates AARs)
   - ./gradlew :pdfium:assembleRelease :android-pdf-viewer:assembleRelease -x lint -x test --no-daemon --stacktrace
 
   # 2) publish assembled artifacts to the container's mavenLocal
   - ./gradlew :pdfium:publishReleasePublicationToMavenLocal :android-pdf-viewer:publishAarPublicationToMavenLocal --no-daemon --stacktrace
+
+after_success:
+  - echo "---- build outputs for android-pdf-viewer ----"
+  - ls -la android-pdf-viewer/build/outputs/aar || true
+  - echo "---- mavenLocal path: AndroidPdfViewer (T-Pro) ----"
+  - ls -la ~/.m2/repository/com/github/T-Pro/AndroidPdfViewer || true
+  - echo "---- mavenLocal path: PdfiumAndroid (marain87) ----"
+  - ls -la ~/.m2/repository/com/github/marain87/PdfiumAndroid || true
