@@ -10,7 +10,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 35
         versionCode 1
-        versionName "4.0.12"
+        versionName "4.0.13"
     }
 
     compileOptions {
@@ -49,7 +49,7 @@ afterEvaluate {
             aar(MavenPublication) {
                 groupId = 'com.github.T-Pro'
                 artifactId = 'AndroidPdfViewer'
-                version = '4.0.12'
+                version = '4.0.13'
 
                 // Use the lazy artifact
                 artifact aarArtifact
